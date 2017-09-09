@@ -1,0 +1,19 @@
+.App {
+  height: 100vh;
+  width: 100vw;
+}
+.gallery-section {
+  overflow: auto;
+  background-color: #f9f9f9;
+}
+
+.loadingWrap {
+  height: calc(100vh - 64px);
+  display: flex;
+  justify-content: center;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1rem;
+}
