@@ -1,6 +1,6 @@
 {
-  "name": "griddit",
-  "version": "0.1.0",
+  "name": "image_gallery",
+  "version": "1.0",
   "private": true,
   "dependencies": {
     "es6-promise": "^4.1.0",
