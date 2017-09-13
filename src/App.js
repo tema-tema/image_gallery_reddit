@@ -4,6 +4,7 @@ import { selectSubreddit, fetchPostsIfNeeded } from './redux/actions';
 import './styles/App.css';
 import Posts from './components/posts';
 import CircularProgress from 'material-ui/CircularProgress';
+import CommentsSlider from './components/slider';
 
 class App extends Component {
 
@@ -33,11 +34,12 @@ class App extends Component {
   }
   
   render() {
-
     const { posts, isFetching, didInvalidate } = this.props
-
     return (
       <div className="App">
+        <div className="CommentsSlider">
+          <CommentsSlider />
+        </div>
         <section className="gallery-section">
         {isFetching && !didInvalidate && posts.length === 0 &&
           <div className="loadingWrap">

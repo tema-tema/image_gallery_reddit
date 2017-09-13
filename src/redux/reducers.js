@@ -1,4 +1,6 @@
-import { combineReducers } from 'redux';
+import {createStore, combineReducers} from 'redux';
+import { reducer as filterReducer, filterActions } from 'redux-filter';
+
 import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
@@ -45,7 +47,7 @@ export const posts = (state = {
 export const postsBySubreddit = (state = {}, action) => {
   switch (action.type) {
     case INVALIDATE_SUBREDDIT:
-    case RECEIVE_POSTS:
+    case RECEIVE_POSTS: 
     case REQUEST_POSTS:
       return Object.assign({}, state, {
         [action.subreddit]: posts(state[action.subreddit], action),
@@ -58,6 +60,7 @@ export const postsBySubreddit = (state = {}, action) => {
 const rootReducer = combineReducers({
   postsBySubreddit,
   selectedSubreddit,
+  filters: filterReducer
 });
 
 export default rootReducer;
