@@ -2,14 +2,7 @@ import React, { Component } from 'react'
 import Slider from 'react-rangeslider'
 import 'react-rangeslider/lib/index.css'
 
-import Posts from '../posts'
-
-import { buildSelector } from 'redux-filter';
-
-//const selector = buildSelector(state => state.filters);
-// const filterState = selector(store.getState());
-
-class CommentsSlider extends Component {
+class CommentsFilter extends Component {
   constructor(props, context) {
     super(props, context)
     this.state = {
@@ -17,9 +10,9 @@ class CommentsSlider extends Component {
     }
   }
  
-  handleOnChange = (num_comments) => {
+  handleOnChange = (value) => {
     this.setState({
-      value: num_comments
+      num_comments: value
     })
   }
  
@@ -27,7 +20,8 @@ class CommentsSlider extends Component {
     let { num_comments } = this.state
     return (
       <Slider
-        value={0}
+        value={ num_comments }
+        min={0} max={700} step={10}
         orientation="horizontal"
         onChange={this.handleOnChange}
       />
@@ -35,4 +29,4 @@ class CommentsSlider extends Component {
   }
 }
 
-export default CommentsSlider;
+export default CommentsFilter;

@@ -4,16 +4,17 @@ import { selectSubreddit, fetchPostsIfNeeded } from './redux/actions';
 import './styles/App.css';
 import Posts from './components/posts';
 import CircularProgress from 'material-ui/CircularProgress';
-import CommentsSlider from './components/slider';
-
+import CommentsFilter from './components/slider';
 class App extends Component {
 
   constructor() {
     super()
     this.state = {
-      subreddit: ''
+      subreddit: '',
+      value: [0,700]
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleOnChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -22,9 +23,12 @@ class App extends Component {
     dispatch(fetchPostsIfNeeded(selectedSubreddit))
   }
 
-  
-  handleChange(e) {
+    handleChange(e) {
     this.setState({subreddit: e.target.value});
+  }
+  
+    handleOnChange(e) {
+    this.setState({ num_comments: e.target.value});
   }
   
   handleSubmit = (e) => {
@@ -37,10 +41,10 @@ class App extends Component {
     const { posts, isFetching, didInvalidate } = this.props
     return (
       <div className="App">
-        <div className="CommentsSlider">
-          <CommentsSlider />
-        </div>
         <section className="gallery-section">
+          <div className="CommentsFilter">
+          <CommentsFilter value={0} min={0} max={700} step={10}  onChange={this.handleOnChange}/>
+        </div>
         {isFetching && !didInvalidate && posts.length === 0 &&
           <div className="loadingWrap">
             <CircularProgress size={60} thickness={7} />
@@ -62,7 +66,8 @@ const mapStateToProps = state => {
   const {
     isFetching,
     didInvalidate,
-    items: posts
+    value: num_comments,
+    items: posts,
   } = postsBySubreddit[selectedSubreddit] || {
     isFetching: true,
     items: []
@@ -70,6 +75,7 @@ const mapStateToProps = state => {
   return {
     selectedSubreddit,
     posts,
+    num_comments,
     isFetching,
     didInvalidate,
   }
