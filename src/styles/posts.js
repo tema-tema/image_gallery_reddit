@@ -1,6 +1,6 @@
 const styles = {
   postContainer: {
-    columnWidth: 400,
+    columnWidth: 200,
     columnGap: 20,
     width: '100vw',
     padding: 20,
@@ -18,7 +18,9 @@ const styles = {
     marginBottom: 10,
   },
   thumbnail: {
-    height: 'auto',
+    display: 'flex',
+    flexGrow: 0,
+    height: '250px',
     width: '100%',
   },
 };

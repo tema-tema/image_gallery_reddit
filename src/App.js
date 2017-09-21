@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selectSubreddit, fetchPostsIfNeeded } from "./redux/actions";
+import { fetchPostsIfNeeded } from "./redux/actions";
 import "./styles/App.css";
 import Posts from "./components/posts";
 import CircularProgress from "material-ui/CircularProgress";

@@ -4,14 +4,8 @@ import {
   SELECT_SUBREDDIT,
   INVALIDATE_SUBREDDIT,
   REQUEST_POSTS,
-  RECEIVE_POSTS,
-  SORT_POSTS,
-  FILTER_POSTS
+  RECEIVE_POSTS
 } from './actions';
-
-const has = p => o => o.hasOwnProperty(p);
-const sortBy = p => (a, b) => a[p] > b[p];
-
 
 export const selectedSubreddit = (state = 'all', action) => {
   switch (action.type) {
@@ -44,8 +38,6 @@ export const posts = (state = {
         items: action.posts,
         lastUpdated: action.receivedAt,
       });
-    case FILTER_POSTS:
-          return posts.filter(has('num_comments'));
        default:
           return state;
   }
