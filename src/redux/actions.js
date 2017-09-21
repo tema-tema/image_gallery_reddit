@@ -4,7 +4,6 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
-export const SORT_POSTS = 'SORT_POSTS';
 export const FILTER_POSTS = 'FILTER_POSTS';
 
 export const selectSubreddit = subreddit => ({
@@ -25,11 +24,9 @@ export const requestPosts = subreddit => ({
 export const receivePosts = (subreddit, json) => ({
   type: RECEIVE_POSTS,
   subreddit,
-  posts: json.data.children.map(child => child.data),
+  posts: (json.data.children.map(child => child.data)).sort((a,b)=> a['num_comments'] - b['num_comments']),
   receivedAt: Date.now(),
 });
-
-
 
 export const fetchPosts = subreddit => (dispatch) => {
   dispatch(requestPosts(subreddit));

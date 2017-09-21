@@ -44,8 +44,6 @@ export const posts = (state = {
         items: action.posts,
         lastUpdated: action.receivedAt,
       });
-    case SORT_POSTS:
-          return posts.sort(sortBy('num_comments'));
     case FILTER_POSTS:
           return posts.filter(has('num_comments'));
        default:
